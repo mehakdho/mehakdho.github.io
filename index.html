@@ -122,7 +122,7 @@
   .clip.open{grid-column:1/-1;cursor:default}
   .clip .frame{display:none;margin-top:18px;aspect-ratio:16/9;background:#000}
   .clip.open .frame{display:block}
-  .clip .frame iframe{width:100%;height:100%;border:0}
+  .clip .frame iframe,.clip .frame video{width:100%;height:100%;border:0;background:#000}
 
   /* trust */
   .trust{padding:110px 5vw;position:relative;overflow:hidden}
@@ -197,7 +197,7 @@
 
 <section class="stories">
   <article class="story up">
-    <div class="story-media"><iframe src="https://drive.google.com/file/d/1bFsbEl5l0i8hs4_vwHLVaXU1k1f1Dd3D/preview" allow="autoplay" allowfullscreen loading="lazy"></iframe></div>
+    <div class="story-media"><video controls preload="metadata" src="videos/dex.mp4"></video></div>
     <div>
       <div class="num">01 · Dex · Founder &amp; CEO, Voldy AI</div>
       <h3>"They've helped my business <mark>quite a lot.</mark>"</h3>
@@ -206,7 +206,7 @@
   </article>
 
   <article class="story up">
-    <div class="story-media"><iframe src="https://drive.google.com/file/d/1IYDqcCS_Z1CDb9XD5L7NUoNXu7tAYYdO/preview" allow="autoplay" allowfullscreen loading="lazy"></iframe></div>
+    <div class="story-media"><video controls preload="metadata" src="videos/devstaff.mp4"></video></div>
     <div>
       <div class="num">02 · Agency partner</div>
       <h3>"Continually impressed by the <mark>business impact.</mark>"</h3>
@@ -215,7 +215,7 @@
   </article>
 
   <article class="story up">
-    <div class="story-media"><iframe src="https://drive.google.com/file/d/1B8m-AgOz1U2svrO070g3y7rpz8qH4qYC/preview" allow="autoplay" allowfullscreen loading="lazy"></iframe></div>
+    <div class="story-media"><video controls preload="metadata" src="videos/cut65.mp4"></video></div>
     <div>
       <div class="num">03 · Lopes Capital · Family office, Scottsdale</div>
       <h3>30+ acquisition targets, <mark>booked fast.</mark></h3>
@@ -344,7 +344,7 @@
       document.querySelectorAll('.clip.open').forEach(o=>{o.classList.remove('open');o.querySelector('.frame')?.remove()});
       c.classList.add('open');
       const f=document.createElement('div');f.className='frame';
-      f.innerHTML='<iframe src="https://drive.google.com/file/d/'+c.dataset.id+'/preview" allow="autoplay" allowfullscreen></iframe>';
+      f.innerHTML='<video controls autoplay src="videos/'+c.dataset.id+'.mp4"></video>';
       c.appendChild(f);
       c.scrollIntoView({behavior:'smooth',block:'center'});
     });
