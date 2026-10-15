@@ -112,14 +112,15 @@
   .group-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:28px}
   .group-head h3{font-size:clamp(20px,2.4vw,32px);text-transform:uppercase;letter-spacing:-.02em}
   .group-head .tag{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow)}
-  .clips{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+  .clips{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-color:rgba(244,243,238,.3) transparent}
+  .clips .clip{flex:0 0 280px;scroll-snap-align:start}
   .clip{background:rgba(244,243,238,.05);border:1px solid rgba(244,243,238,.14);padding:20px;cursor:pointer;transition:border-color .25s,transform .25s;position:relative}
   .clip:hover{border-color:var(--yellow);transform:translateY(-3px)}
   .clip .play{width:44px;height:44px;border-radius:50%;border:1px solid var(--yellow);display:grid;place-items:center;margin-bottom:18px}
   .clip .play svg{width:14px;height:14px;fill:var(--yellow);margin-left:2px}
   .clip .t{font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;line-height:1.35}
   .clip .d{font-size:13px;color:rgba(244,243,238,.6);margin-top:8px;line-height:1.5}
-  .clip.open{grid-column:1/-1;cursor:default}
+  .clip.open{cursor:default;border-color:var(--yellow)}
   .clip .frame{display:none;margin-top:18px;aspect-ratio:16/9;background:#000}
   .clip.open .frame{display:block}
   .clip .frame iframe,.clip .frame video{width:100%;height:100%;border:0;background:#000}
@@ -388,7 +389,6 @@
       const f=document.createElement('div');f.className='frame';
       f.className='frame audio';f.innerHTML='<audio controls autoplay src="audio/'+c.dataset.id+'.m4a"></audio>';
       c.appendChild(f);
-      c.scrollIntoView({behavior:'smooth',block:'center'});
     });
   });
 </script>
