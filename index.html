@@ -123,6 +123,18 @@
   .clip .frame{display:none;margin-top:18px;aspect-ratio:16/9;background:#000}
   .clip.open .frame{display:block}
   .clip .frame iframe,.clip .frame video{width:100%;height:100%;border:0;background:#000}
+  .clip .frame.audio{aspect-ratio:auto;background:none}
+  .clip .frame.audio audio{width:100%;display:block}
+  .clip::after{content:"Audio";position:absolute;top:20px;right:20px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,243,238,.45)}
+  .feature{display:grid;grid-template-columns:1.1fr 1fr;gap:5vw;align-items:center;margin-bottom:72px}
+  @media(max-width:900px){.feature{grid-template-columns:1fr}}
+  .feature .media{position:relative;aspect-ratio:16/10;background:#000}
+  .feature .media video{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .feature .media::after{content:"";position:absolute;inset:auto auto -14px -14px;width:100%;height:100%;border:2px solid var(--yellow);z-index:-1}
+  .feature .num{font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);margin-bottom:16px}
+  .feature h3{font-size:clamp(28px,3.4vw,48px);line-height:.95;text-transform:uppercase;margin-bottom:20px}
+  .feature h3 mark{background:var(--yellow);color:var(--ink);padding:0 6px}
+  .feature p{font-size:17px;line-height:1.6;color:rgba(244,243,238,.7);max-width:52ch}
 
   /* trust */
   .trust{padding:110px 5vw;position:relative;overflow:hidden}
@@ -278,13 +290,20 @@
   <div class="blob b-yellow"></div>
   <p class="kicker up">In their words · press play</p>
   <h2 class="up">Real clients.<br><em>Real messages.</em></h2>
-  <p class="sub up">Every clip below is a real client reaction — texts, voice notes, and calls, lightly trimmed for length and nothing else. Click any card to play it right here.</p>
+  <p class="sub up">Real client reactions from our calls, lightly trimmed for length and nothing else. One on camera, the rest as audio. Tap any card to listen.</p>
+
+  <article class="feature up">
+    <div class="media"><video controls preload="metadata" src="videos/1gR70vYV6WHEpDog64jA-wKGfEqsmeZ89.mp4#t=1"></video></div>
+    <div>
+      <div class="num">On camera · Outbound vs paid vendors</div>
+      <h3>"We've got a <mark>gold mine</mark> starting to stack up."</h3>
+      <p>"The leads are fantastic. I've bought leads before from companies, and I've had other people do lead generation for me with Facebook ads, and they were just terrible leads."</p>
+    </div>
+  </article>
 
   <div class="group up">
     <div class="group-head"><h3>"Leads are fantastic"</h3><span class="tag">Outbound · vs paid vendors</span></div>
     <div class="clips">
-      <div class="clip" data-id="1gR70vYV6WHEpDog64jA-wKGfEqsmeZ89"><div class="play"><svg viewBox="0 0 12 12"><path d="M0 0v12l12-6z"/></svg></div><div class="t">Leads are fantastic</div><div class="d">Stacked against the paid vendors they were using before.</div></div>
-      <div class="clip" data-id="1sDm9anW8cC0K7hrP7Yhcymzid9ARpwh8"><div class="play"><svg viewBox="0 0 12 12"><path d="M0 0v12l12-6z"/></svg></div><div class="t">"You're doing a great job"</div><div class="d">Short and to the point.</div></div>
       <div class="clip" data-id="1UJvESTpzXB08IjrtBghmgDHbjGhkaVz-"><div class="play"><svg viewBox="0 0 12 12"><path d="M0 0v12l12-6z"/></svg></div><div class="t">"I don't need to micromanage you"</div><div class="d">The whole point of the system, in one sentence.</div></div>
       <div class="clip" data-id="1tx22axlTwFKHiZ10t_UCTCWsy5BBqVxk"><div class="play"><svg viewBox="0 0 12 12"><path d="M0 0v12l12-6z"/></svg></div><div class="t">Generating real value</div><div class="d">Not vanity metrics — revenue conversations.</div></div>
       <div class="clip" data-id="1bBA9GhFqhzqjbs5J-zFNa1agcLT1KIQl"><div class="play"><svg viewBox="0 0 12 12"><path d="M0 0v12l12-6z"/></svg></div><div class="t">"Great work, as always"</div><div class="d">The kind of message that keeps showing up.</div></div>
@@ -360,14 +379,14 @@
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
   document.querySelectorAll('.up').forEach(el=>io.observe(el));
 
-  // click-to-play clips: build the Drive iframe on demand so 20+ embeds don't load upfront
+  // click-to-play clips: build the audio player on demand so 19 players don't load upfront
   document.querySelectorAll('.clip[data-id]').forEach(c=>{
     c.addEventListener('click',()=>{
       if(c.classList.contains('open'))return;
       document.querySelectorAll('.clip.open').forEach(o=>{o.classList.remove('open');o.querySelector('.frame')?.remove()});
       c.classList.add('open');
       const f=document.createElement('div');f.className='frame';
-      f.innerHTML='<video controls autoplay src="videos/'+c.dataset.id+'.mp4"></video>';
+      f.className='frame audio';f.innerHTML='<audio controls autoplay src="audio/'+c.dataset.id+'.m4a"></audio>';
       c.appendChild(f);
       c.scrollIntoView({behavior:'smooth',block:'center'});
     });
