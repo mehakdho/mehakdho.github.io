@@ -162,3 +162,36 @@
   .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px}
   @media(max-width:860px){.two{grid-template-columns:1fr}}
   .fine{font-family:var(--mono);font-size:11.5px;color:#777;margin-top:16px;line-height:1.6;max-width:760px}
+
+  /* colour: each engine page sets --accent on <body> */
+  .dot.b{background:var(--accent,var(--blue))}
+  .steps .n{color:var(--accent,var(--blue))}
+  .plain-hero .glow,.cta .glow{background:radial-gradient(circle,color-mix(in srgb,var(--accent,#52a8ff) 26%,transparent),transparent 62%)}
+  .plain-hero h1 .hl,.hl{color:var(--accent,var(--blue))}
+  .engines .card{border-top:2px solid var(--accent,var(--blue))}
+  .engines .card .go{color:var(--accent,#fff)}
+  .metrics .v{background:linear-gradient(90deg,#fff,var(--accent,#52a8ff));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* case studies */
+  .results{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:56px}
+  .result{padding:28px;border-top:2px solid var(--accent,var(--blue))}
+  .result .big{font-size:44px;font-weight:500;letter-spacing:-2px;line-height:1}
+  .result .who,.story .who{font-family:var(--mono);font-size:12px;color:var(--mute);margin:14px 0 10px;text-transform:uppercase;letter-spacing:.04em}
+  .result p,.story p,.clip .d{color:var(--mute);font-size:14.5px;line-height:1.55}
+  .stories{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px}
+  .stories .feature{grid-column:1/-1;grid-template-columns:1.3fr 1fr}
+  @media(max-width:860px){.stories,.stories .feature{grid-template-columns:1fr}}
+  .story{display:grid;grid-template-rows:auto 1fr}
+  .story video{width:100%;aspect-ratio:16/10;background:#000;display:block}
+  .stories .feature{display:grid;grid-template-rows:none}
+  .story-copy{padding:24px}
+  .story h3{font-size:22px;font-weight:500;letter-spacing:-.6px;line-height:1.25}
+  .clip-group{margin-top:48px}
+  .group-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+  .group-head h3{font-size:22px;font-weight:500;letter-spacing:-.5px}
+  .clips{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+  .clip{padding:18px;display:flex;flex-direction:column;gap:6px}
+  .clip .t{font-size:15.5px;font-weight:500}
+  .clip audio{width:100%;margin-top:10px;height:36px}
+  .netimg{margin-top:48px;padding:24px;background:#fff}
+  .netimg img{width:100%;height:auto;display:block}
