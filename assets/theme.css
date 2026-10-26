@@ -1,0 +1,44 @@
+/* glossy dark-blue + white layer over the black base; loaded last on every page */
+:root{--navy:#0b1a4a;--navy-2:#06102e;--ink-blue:#1D43D8}
+body{background:
+  radial-gradient(1200px 700px at 85% -10%,rgba(29,67,216,.28),transparent 60%),
+  radial-gradient(900px 600px at -10% 40%,rgba(29,67,216,.14),transparent 60%),
+  linear-gradient(180deg,#030713 0%,#000 55%,#040a1f 100%) fixed;}
+.hero .scrim{background:linear-gradient(to top,rgba(3,7,19,.95) 0%,rgba(3,7,19,.78) 30%,rgba(0,0,0,0) 72%)}
+#ascii{opacity:.9}
+/* glossy navy cards: deep blue fill, soft top sheen, thin light edge */
+.card{background:linear-gradient(160deg,rgba(29,67,216,.20) 0%,rgba(11,26,74,.55) 38%,rgba(6,16,46,.85) 100%);
+  box-shadow:0 0 0 1px rgba(120,150,255,.18),inset 0 1px 0 rgba(255,255,255,.10),0 20px 50px -30px rgba(29,67,216,.6)}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:40%;background:linear-gradient(180deg,rgba(255,255,255,.06),transparent);pointer-events:none}
+.metrics{background:linear-gradient(160deg,rgba(29,67,216,.18),rgba(6,16,46,.8));box-shadow:0 0 0 1px rgba(120,150,255,.18),inset 0 1px 0 rgba(255,255,255,.08)}
+.chip{background:rgba(29,67,216,.22);box-shadow:inset 0 0 0 1px rgba(120,150,255,.25)}
+/* a band of white: the logo strip sits on a clean white panel */
+.trust{background:#f7f8fc;color:#0b1a4a;margin-top:24px;padding:40px 0 36px}
+.trust .cap{color:#4a5a8a}
+.trust .marquee .tile{background:#fff;box-shadow:0 1px 0 rgba(11,26,74,.06),0 0 0 1px rgba(11,26,74,.08)}
+.trust .marquee.names .tile{background:#0b1a4a;color:#fff;box-shadow:none}
+.trust .marquee{-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+/* primary button: white with a blue glow */
+.btn{box-shadow:0 8px 30px -10px rgba(82,140,255,.7)}
+footer{background:linear-gradient(180deg,transparent,rgba(11,26,74,.55));border-top-color:rgba(120,150,255,.18)}
+header{background:none}
+.card.story::before{display:none}
+.card.netimg{background:#fff}
+
+/* no accent colours: everything white/grey, blue only in the background */
+.dot.b{background:#cfd6e6}
+.steps .n,.engines .card .go,.hl,.plain-hero h1 .hl{color:#fff}
+.engines .card,.result{border-top:1px solid rgba(255,255,255,.12)}
+.metrics .v{background:none;-webkit-text-fill-color:#fff;color:#fff}
+.plain-hero .glow,.cta .glow,.hero .glow{background:radial-gradient(circle,rgba(29,67,216,.18),transparent 62%)}
+.chip{background:#16181f;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.btn{box-shadow:none}
+.bar i.focus{background:#fff}
+.msg.in{background:rgba(255,255,255,.08);color:#ededed}
+.card{background:linear-gradient(160deg,rgba(255,255,255,.04) 0%,rgba(10,14,28,.92) 45%,rgba(6,9,20,.96) 100%);
+  box-shadow:0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,.08)}
+.card.netimg{background:#fff}
+.metrics{background:rgba(10,14,28,.9);box-shadow:0 0 0 1px rgba(255,255,255,.10)}
+.trust .marquee.names .tile{background:#fff;color:#111;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.trust .cap{color:#555}
+footer{background:none;border-top-color:rgba(255,255,255,.12)}
