@@ -75,3 +75,6 @@ footer{background:none;border-top-color:rgba(255,255,255,.12)}
 .faces[data-n="4"]{grid-template-columns:repeat(4,1fr)}
 @media(max-width:1000px){.faces[data-n="4"]{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:760px){.faces[data-n="3"],.faces[data-n="4"]{grid-template-columns:1fr}}
+/* backed-company logos: greyscale so they never read as Blue Sun clients */
+.trust .marquee.names .tile{background:#fff;height:64px;padding:0 24px;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+.trust .marquee.names .tile img{height:28px;width:auto;filter:grayscale(1);opacity:.75}
