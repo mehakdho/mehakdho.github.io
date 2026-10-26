@@ -78,3 +78,12 @@ footer{background:none;border-top-color:rgba(255,255,255,.12)}
 /* backed-company logos: greyscale so they never read as Blue Sun clients */
 .trust .marquee.names .tile{background:#fff;height:64px;padding:0 24px;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
 .trust .marquee.names .tile img{height:28px;width:auto;filter:grayscale(1);opacity:.75}
+/* logo band back to dark so the page reads as one piece */
+.trust{background:transparent;color:#ededed;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+.trust .cap{color:#999}
+.trust .marquee .tile{background:#fff;box-shadow:none}
+.trust .marquee.names .tile{background:transparent;box-shadow:0 0 0 1px rgba(255,255,255,.10)}
+.trust .marquee.names .tile img{filter:grayscale(1) invert(1);mix-blend-mode:screen;opacity:.8}
+/* investor logos in their own colours, on white cards like the client row */
+.trust .marquee.names .tile{background:#fff;box-shadow:none;height:64px}
+.trust .marquee.names .tile img{filter:none;mix-blend-mode:normal;opacity:1;height:30px}
