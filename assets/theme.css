@@ -67,3 +67,11 @@ footer{background:none;border-top-color:rgba(255,255,255,.12)}
 .win .big{font-size:44px;font-weight:500;letter-spacing:-2px;line-height:1;color:#fff}
 .win .client{font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#ededed;text-transform:uppercase;letter-spacing:.05em;margin-top:14px}
 .win p{color:#999;font-size:14px;line-height:1.5;margin-top:6px}
+/* consistent portrait frames for every client video: no black bars, video fills the same frame as the still */
+.faces{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.face-media,.face video{aspect-ratio:4/5}
+.face video{object-fit:cover}
+.faces[data-n="3"]{grid-template-columns:repeat(3,1fr)}
+.faces[data-n="4"]{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1000px){.faces[data-n="4"]{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.faces[data-n="3"],.faces[data-n="4"]{grid-template-columns:1fr}}
