@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Deal Flow Engine · Blue Sun</title>
+<meta name="description" content="An AI agent that works your acquisition thesis: finds owner-operated companies that fit, reaches the owner directly, qualifies them and books the conversation on your calendar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#000;--card:#0a0a0a;--chip:#1f1f1f;--ring:rgba(255,255,255,.145);
+    --text:#ededed;--soft:#e7e7e7;--mute:#999;--blue:#52a8ff;--green:#62c073;
+    --mono:'Geist Mono',ui-monospace,Menlo,monospace;--sans:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-optical-sizing:auto;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .mono{font-family:var(--mono)}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+  /* buttons + chips */
+  .btn{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#121212;border-radius:0;font-weight:500;font-size:15px;padding:8px 12px;transition:background .2s}
+  .btn:hover{background:#d9d9d9}
+  .btn svg{width:12px;height:12px}
+  .btn.lg{font-size:20px;padding:14px 20px}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border-radius:100px;padding:4px 10px;font-size:12px;font-family:var(--mono);color:var(--soft);white-space:nowrap}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--mute);flex:none}
+  .dot.g{background:var(--green)}.dot.b{background:var(--blue)}
+  .dot.pulse{animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.25}}
+
+  /* header */
+  header{position:absolute;top:38px;left:0;right:0;z-index:20;padding:0 56px;display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:500;font-size:20px;letter-spacing:-.3px}
+  .logo svg{width:22px;height:22px}
+  nav.links{display:flex;gap:32px;font-size:16px}
+  nav.links a{opacity:.85}nav.links a:hover{opacity:1}
+  .menu-btn{display:none;background:none;border:0;color:#fff;font:500 15px var(--sans);cursor:pointer}
+  .mobile-menu{position:fixed;inset:0;background:#000;z-index:50;display:none;flex-direction:column;justify-content:center;padding:0 32px;gap:28px}
+  .mobile-menu a{font-size:34px;font-weight:500;letter-spacing:-1px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu .close{position:absolute;top:38px;right:24px}
+  @media(max-width:860px){header{padding:0 24px}nav.links,header .btn{display:none}.menu-btn{display:block}}
+
+  /* hero */
+  .hero{position:relative;height:100svh;min-height:640px;overflow:hidden}
+  #ascii{position:absolute;inset:0;width:100%;height:100%}
+  .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.76) 30%,rgba(0,0,0,0) 72%)}
+  .glow{position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(82,168,255,.16),transparent 60%);pointer-events:none}
+  .hero .glow{right:-260px;top:-300px}
+  .hero-copy{position:absolute;left:56px;right:56px;bottom:72px;z-index:2}
+  .hero h1{font-size:clamp(32px,4.6vw,60px);font-weight:500;letter-spacing:-2.4px;line-height:1.04;max-width:752px}
+  .hero p{font-size:16px;color:var(--soft);line-height:1.6;max-width:560px;margin:20px 0 32px}
+  .hero-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  @media(max-width:860px){.hero-copy{left:24px;right:24px;bottom:48px}.hero h1{letter-spacing:-1.2px}}
+
+  /* sections */
+  section{position:relative;padding:120px 0}
+  .kicker{font-family:var(--mono);font-size:12px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:20px}
+  h2{font-size:clamp(28px,3.4vw,44px);font-weight:500;letter-spacing:-1.6px;line-height:1.08;max-width:760px}
+  .lede{color:var(--mute);font-size:17px;line-height:1.6;max-width:620px;margin-top:18px}
+  .card{background:var(--card);box-shadow:0 0 0 1px var(--ring);position:relative}
+
+  /* event stream */
+  .stream{margin-top:56px}
+  .stream-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:16px 20px;border-bottom:1px solid var(--ring)}
+  .stream-head .id{font-family:var(--mono);font-size:13px;color:var(--soft)}
+  .stream-head .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .stream-body{display:grid;grid-template-columns:240px 1fr;min-height:420px}
+  .targets{border-right:1px solid var(--ring);padding:8px 0;max-height:440px;overflow-y:auto;font-family:var(--mono);font-size:12.5px}
+  .targets div{display:flex;align-items:center;gap:10px;padding:9px 20px;color:var(--mute)}
+  .targets div.on{color:#fff;background:rgba(255,255,255,.04)}
+  .targets .tag{margin-left:auto;font-size:11px}
+  table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px}
+  th{font-weight:400;color:var(--mute);text-align:left;padding:14px 20px;border-bottom:1px solid var(--ring)}
+  td{padding:13px 20px;border-bottom:1px solid rgba(255,255,255,.06);color:var(--soft);vertical-align:middle}
+  td.span-name{white-space:nowrap}
+  td .note{display:block;color:var(--mute);font-size:11.5px;margin-top:3px;white-space:normal}
+  .bar{position:relative;height:6px;width:100%}
+  .bar i{position:absolute;top:0;height:100%;border-radius:2px;background:rgba(255,255,255,.18);width:0;transition:width .7s cubic-bezier(.2,.7,.2,1)}
+  .bar i.focus{background:var(--blue)}
+  tr.row{opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s}
+  tr.row.in{opacity:1;transform:none}
+  td.dur{color:var(--mute);white-space:nowrap;text-align:right}
+  .illus{font-family:var(--mono);font-size:11.5px;color:#666;margin-top:12px}
+  @media(max-width:860px){.stream-body{grid-template-columns:1fr}.targets{display:none}th:nth-child(3),td.dur{display:none}td,th{padding:12px 14px}}
+
+  /* bento */
+  .bento{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+  @media(max-width:960px){.bento{grid-template-columns:1fr}}
+  .bento .card{padding:24px;display:flex;flex-direction:column;align-items:flex-start;min-height:420px}
+  .bento .viz{align-self:stretch}
+  .bento h3{font-size:20px;font-weight:500;letter-spacing:-.5px;margin-top:14px}
+  .bento p{color:var(--mute);font-size:14.5px;line-height:1.55;margin-top:8px}
+  .viz{margin-top:auto;padding-top:24px;font-family:var(--mono);font-size:12px}
+  .rowline{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);color:var(--soft)}
+  .rowline span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .msg{padding:10px 12px;line-height:1.5;margin-bottom:8px;font-family:var(--sans);font-size:13px}
+  .msg.out{background:#141414;color:var(--soft);margin-right:28px}
+  .msg.in{background:rgba(82,168,255,.12);color:#cfe5ff;margin-left:28px}
+  .msg small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--mute);margin-bottom:4px}
+  .diff div{padding:7px 10px;border-left:2px solid transparent;color:var(--soft);margin-bottom:4px;background:#0f0f0f}
+  .diff .add{border-color:var(--green)}.diff .mod{border-color:var(--blue)}.diff .neu{color:var(--mute)}
+  .diff b{font-weight:400;color:var(--mute);margin-right:8px}
+
+  /* metrics */
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;box-shadow:0 0 0 1px var(--ring)}
+  .metrics>div{padding:32px 28px;border-right:1px solid var(--ring)}
+  .metrics>div:last-child{border-right:0}
+  .metrics .v{font-size:56px;font-weight:500;letter-spacing:-3.36px;line-height:1}
+  .metrics .v small{font-family:var(--mono);font-size:16px;letter-spacing:0;color:var(--mute);margin-left:6px}
+  .metrics .l{color:var(--mute);font-size:14px;line-height:1.5;margin-top:14px}
+  @media(max-width:960px){.metrics{grid-template-columns:1fr 1fr}.metrics>div:nth-child(2){border-right:0}.metrics>div:nth-child(-n+2){border-bottom:1px solid var(--ring)}}
+  @media(max-width:520px){.metrics{grid-template-columns:1fr}.metrics>div{border-right:0;border-bottom:1px solid var(--ring)}.metrics .v{font-size:46px}}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
+  @media(max-width:960px){.steps{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.steps{grid-template-columns:1fr}}
+  .steps .card{padding:24px}
+  .steps .n{font-family:var(--mono);font-size:12px;color:var(--blue)}
+  .steps h3{font-size:18px;font-weight:500;letter-spacing:-.4px;margin:14px 0 8px}
+  .steps p{color:var(--mute);font-size:14px;line-height:1.55}
+  .hitl{margin-top:16px;padding:20px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .hitl p{color:var(--soft);font-size:15px;line-height:1.55;flex:1;min-width:260px}
+
+  /* record */
+  .record{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin-top:56px}
+  @media(max-width:960px){.record{grid-template-columns:1fr}}
+  .record .card{padding:32px}
+  .record blockquote{font-size:clamp(22px,2.2vw,30px);font-weight:500;letter-spacing:-.8px;line-height:1.25}
+  .record .who{font-family:var(--mono);font-size:12px;color:var(--mute);margin-top:20px}
+  .record ul{list-style:none;font-family:var(--mono);font-size:13px}
+  .record li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .record li span:last-child{color:#fff;text-align:right}
+  .textlink{display:inline-flex;align-items:center;gap:8px;font-size:15px;margin-top:24px;border-bottom:1px solid var(--ring);padding-bottom:4px}
+  .textlink:hover{border-color:#fff}
+
+  /* cta */
+  .cta{text-align:left;overflow:hidden}
+  .cta .glow{left:-300px;bottom:-500px}
+  .cta h2{font-size:clamp(34px,5vw,64px);letter-spacing:-2.6px;max-width:900px}
+  .cta p{color:var(--soft);font-size:17px;line-height:1.6;max-width:560px;margin:20px 0 36px}
+
+  footer{border-top:1px solid var(--ring);padding:40px 0 56px;font-size:13px;color:var(--mute);line-height:1.7}
+  footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  footer a:hover{color:#fff}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s,transform .7s}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal,tr.row{opacity:1;transform:none;transition:none}.dot.pulse{animation:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+    Blue Sun
+  </a>
+  <nav class="links">
+    <a href="/">All engines</a>
+    <a href="#agent">The agent</a>
+    <a href="#run">How it runs</a>
+    <a href="#record">Track record</a>
+    <a href="/proof/">Case studies</a>
+  </nav>
+  <a class="btn" href="https://cal.id/mehak-dhoundiyal/let-s-build-your-first-campaign-demo">Book a call <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9 9 3M4 3h5v5"/></svg></a>
+  <button class="menu-btn" aria-label="Open menu" onclick="document.querySelector('.mobile-menu').classList.add('open')">Menu</button>
+</header>
+
+<div class="mobile-menu" onclick="if(event.target.tagName==='A'||event.target.classList.contains('close'))this.classList.remove('open')">
+  <button class="menu-btn close" aria-label="Close menu">Close</button>
+  <a href="/">All engines</a>
+  <a href="#agent">The agent</a>
+  <a href="#run">How it runs</a>
+  <a href="#record">Track record</a>
+  <a href="/proof/">Case studies</a>
+  <a href="https://cal.id/mehak-dhoundiyal/let-s-build-your-first-campaign-demo">Book a call ↗</a>
+</div>
+
+<div class="hero" id="top">
+  <canvas id="ascii" aria-hidden="true"></canvas>
+  <div class="glow"></div>
+  <div class="scrim"></div>
+  <div class="hero-copy">
+    <span class="chip"><span class="dot g pulse"></span>The Deal Flow Engine · for buyers</span>
+    <h1 style="margin-top:20px">An AI agent that puts business owners on your calendar.</h1>
+    <p>Give it your thesis. It finds the owner-operated companies that fit, reaches the founder directly, qualifies their appetite to talk, and books the conversation. Off-market, before anyone runs a process.</p>
+    <div class="hero-row">
+      <a class="btn lg" href="https://cal.id/mehak-dhoundiyal/let-s-build-your-first-campaign-demo">Book a call <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9 9 3M4 3h5v5"/></svg></a>
+      <span class="mono" style="font-size:13px;color:var(--mute)">100 qualified appointments in 90 days, or we keep working free</span>
+    </div>
+  </div>
+</div>
+
+<section id="run">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="dot b"></span>Event stream</div>
+    <h2 class="reveal">Watch one target move from a list to your calendar.</h2>
+    <p class="lede reveal">Every step is logged. You see who was found, what was said, how they answered and why they qualified, before you ever get on the call.</p>
+
+    <div class="card stream reveal">
+      <div class="stream-head">
+        <span class="id">run_0417 · thesis: childcare &amp; K-12 operators · Southwest US</span>
+        <span class="chips"><span class="chip"><span class="dot g"></span>BOOKED</span><span class="chip">6d 4h</span><span class="chip">7 spans</span></span>
+      </div>
+      <div class="stream-body">
+        <div class="targets" id="targets"></div>
+        <div style="overflow-x:auto">
+          <table>
+            <thead><tr><th style="width:38%">SPAN</th><th>START</th><th style="width:90px;text-align:right">DURATION</th></tr></thead>
+            <tbody id="spans"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <p class="illus reveal">Illustrative run. Company names withheld; timings are representative.</p>
+  </div>
+</section>
+
+<section id="agent" style="padding-top:40px">
+  <div class="glow" style="left:-400px;top:0;opacity:.6"></div>
+  <div class="wrap">
+    <div class="kicker reveal"><span class="dot b"></span>The agent</div>
+    <h2 class="reveal">Three jobs your associates shouldn't be doing by hand.</h2>
+    <div class="bento">
+      <div class="card reveal">
+        <span class="chip"><span class="dot b"></span>01 · Source</span>
+        <h3>It builds the universe from your thesis</h3>
+        <p>Sector, geography, size, ownership. It finds the companies that match and the person who actually owns each one, then checks the fit before anyone is contacted.</p>
+        <div class="viz">
+          <div class="rowline"><span>Early learning group · AZ</span><span class="chip"><span class="dot g"></span>FIT</span></div>
+          <div class="rowline"><span>Charter K-8 operator · NM</span><span class="chip"><span class="dot g"></span>FIT</span></div>
+          <div class="rowline"><span>Daycare franchise unit · AZ</span><span class="chip"><span class="dot"></span>NO FIT</span></div>
+          <div class="rowline"><span>Tutoring centres (4) · NV</span><span class="chip"><span class="dot g"></span>FIT</span></div>
+          <div class="rowline"><span>Preschool, sponsor-owned · TX</span><span class="chip"><span class="dot"></span>NO FIT</span></div>
+        </div>
+      </div>
+      <div class="card reveal">
+        <span class="chip"><span class="dot b"></span>02 · Reach</span>
+        <h3>It talks to the owner, not a gatekeeper</h3>
+        <p>Email, SMS and voice from one memory. Every reply gets an answer in about 60 seconds, day or night, in a tone that reads like a person who did their homework.</p>
+        <div class="viz">
+          <div class="msg out"><small>AGENT · SMS · 09:12</small>Saw you opened the second Tempe location last spring. Are you open to a short call about where the business goes next?</div>
+          <div class="msg in"><small>OWNER · 09:41</small>Depends who's asking. We've had a few calls like this.</div>
+          <div class="msg out"><small>AGENT · 09:42</small>Fair. It's a family office that buys and keeps operators, no flip. Would Tuesday at 10 or Wednesday at 2 work?</div>
+        </div>
+      </div>
+      <div class="card reveal">
+        <span class="chip"><span class="dot b"></span>03 · Qualify</span>
+        <h3>It only books the conversations worth having</h3>
+        <p>Your criteria, checked on the way in. What reaches your calendar arrives with notes, so you walk in already knowing the business.</p>
+        <div class="viz diff">
+          <div class="add"><b>+</b>Owner-operator, 14 years</div>
+          <div class="add"><b>+</b>Revenue inside target band</div>
+          <div class="add"><b>+</b>Open to a conversation</div>
+          <div class="mod"><b>~</b>Timeline: 12–24 months</div>
+          <div class="neu"><b>·</b>Booked: Tue 10:00, partner calendar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:40px">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="dot b"></span>By the numbers</div>
+    <div class="metrics reveal">
+      <div><div class="v">$450M<small>+</small></div><div class="l">In client deal flow written since 2026</div></div>
+      <div><div class="v">35<small>/mo</small></div><div class="l">Owner introductions for a Scottsdale family office</div></div>
+      <div><div class="v">30<small>days</small></div><div class="l">To validate an investment thesis with real owner conversations</div></div>
+      <div><div class="v">60<small>sec</small></div><div class="l">Reply time on every owner response, 24/7</div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:40px">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="dot b"></span>Deployment</div>
+    <h2 class="reveal">Live in seven days. Autonomous when you say so.</h2>
+    <div class="steps">
+      <div class="card reveal"><div class="n">DAY 0</div><h3>Thesis call</h3><p>Sector, geography, size, red lines, and what a good first conversation looks like to you.</p></div>
+      <div class="card reveal"><div class="n">DAY 1–5</div><h3>Universe built</h3><p>Targets sourced, owners verified, messaging written in your voice and approved by you.</p></div>
+      <div class="card reveal"><div class="n">DAY 7</div><h3>Agent live</h3><p>Outreach starts across email, SMS and voice. Replies are handled the moment they land.</p></div>
+      <div class="card reveal"><div class="n">ONGOING</div><h3>Meetings booked</h3><p>Qualified owners land on your calendar with notes. You do the one part that needs a principal.</p></div>
+    </div>
+    <div class="card hitl reveal">
+      <span class="chip"><span class="dot b"></span>Human in the loop</span>
+      <p>It launches with you approving every message before it sends. Most clients switch it to fully autonomous within 7–14 days.</p>
+    </div>
+  </div>
+</section>
+
+<section id="record" style="padding-top:40px">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="dot b"></span>Track record</div>
+    <h2 class="reveal">A family office went looking for daycares to buy.</h2>
+    <div class="record">
+      <div class="card reveal">
+        <blockquote>“We were able to speak to upwards of 30 daycares in a short period of time… the results really speak for themselves.”</blockquote>
+        <div class="who">LOPES CAPITAL · FAMILY OFFICE · SCOTTSDALE, AZ</div>
+        <a class="textlink" href="/proof/#receipts">Watch the full clip ↗</a>
+      </div>
+      <div class="card reveal">
+        <ul>
+          <li><span>Mandate</span><span>Daycare &amp; K-12 acquisitions</span></li>
+          <li><span>Owners spoken to</span><span>30+</span></li>
+          <li><span>Introductions</span><span>35 / month</span></li>
+          <li><span>Thesis validated</span><span>30 days</span></li>
+          <li><span>Deal flow</span><span>$10M / yr</span></li>
+        </ul>
+        <a class="textlink" href="/proof/">More case studies ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="book">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="kicker reveal"><span class="dot g pulse"></span>Book a call</div>
+    <h2 class="reveal">Tell it the thesis. Meet the owners.</h2>
+    <p class="reveal">100 qualified appointments in 90 days, or we keep working for free until you get them. Fifteen minutes to see if it fits your mandate.</p>
+    <a class="btn lg reveal" href="https://cal.id/mehak-dhoundiyal/let-s-build-your-first-campaign-demo">Book a call <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9 9 3M4 3h5v5"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><span style="color:#fff">Blue Sun Consultancy</span><br>© 2026 Blue Sun · <a href="mailto:mehak@mehakdhoundiyal.com">mehak@mehakdhoundiyal.com</a></div>
+    <div class="mono" style="font-size:12px">Registered office: T1-0906, Lotus Panache, Sector 110, Noida, UP 201304<br>GSTIN 09FYQPD3567J1ZR</div>
+  </div>
+</footer>
+
+<script>
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- ASCII hero: a radar sweep over a field of targets ---------- */
+(() => {
+  const cv = document.getElementById('ascii'), ctx = cv.getContext('2d');
+  const RAMP = ' .·:-=+*#%@';
+  let W, H, cols, rows, cw = 10, ch = 18, dpr, pings = [];
+  function size() {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cw = W < 700 ? 8 : 10; ch = cw * 1.8;
+    cols = Math.ceil(W / cw); rows = Math.ceil(H / ch);
+    ctx.font = `${cw * 1.35}px "Geist Mono", monospace`; ctx.textBaseline = 'top';
+    // targets scattered across the field
+    pings = Array.from({length: Math.round(cols * rows / 260)}, () => ({x: Math.random() * cols, y: Math.random() * rows, hit: -9}));
+  }
+  addEventListener('resize', size); size();
+  const cx = () => cols * 0.68, cy = () => rows * 0.42;
+  function frame(t) {
+    t /= 1000;
+    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
+    const sweep = (t * 0.55) % (Math.PI * 2), ox = cx(), oy = cy();
+    for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
+      const dx = (x - ox), dy = (y - oy) * 1.8, d = Math.hypot(dx, dy);
+      let a = Math.atan2(dy, dx); if (a < 0) a += Math.PI * 2;
+      let behind = (sweep - a + Math.PI * 2) % (Math.PI * 2);
+      const trail = Math.max(0, 1 - behind / 1.4);
+      const ring = Math.max(0, 1 - Math.abs(((d - t * 9) % 22 + 22) % 22 - 11) / 1.2) * 0.35;
+      const noise = (Math.sin(x * 0.21 + t * 0.7) * Math.cos(y * 0.33 - t * 0.5) + 1) * 0.09;
+      const fade = Math.max(0, 1 - d / (cols * 0.75));
+      let v = (trail * 0.75 + ring + noise) * fade;
+      if (v < 0.05) continue;
+      v = Math.min(v, 0.99);
+      ctx.fillStyle = `rgba(255,255,255,${0.08 + v * 0.55})`;
+      ctx.fillText(RAMP[Math.floor(v * RAMP.length)], x * cw, y * ch);
+    }
+    // targets light up blue when the sweep passes, then decay; green when "booked"
+    for (const p of pings) {
+      const dx = p.x - ox, dy = (p.y - oy) * 1.8;
+      let a = Math.atan2(dy, dx); if (a < 0) a += Math.PI * 2;
+      const behind = (sweep - a + Math.PI * 2) % (Math.PI * 2);
+      if (behind < 0.05 && t - p.hit > 2) { p.hit = t; p.booked = Math.random() < 0.12; }
+      const age = t - p.hit; if (age > 3.5) continue;
+      const k = 1 - age / 3.5;
+      ctx.fillStyle = p.booked ? `rgba(98,192,115,${k})` : `rgba(82,168,255,${k})`;
+      ctx.fillText(p.booked ? '◆' : '+', Math.round(p.x) * cw, Math.round(p.y) * ch);
+    }
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  document.fonts.ready.then(() => { size(); requestAnimationFrame(frame); });
+})();
+
+/* ---------- event stream ---------- */
+const TARGETS = [
+  ['tgt_0412','g','BOOKED'],['tgt_0413','b','REPLIED'],['tgt_0414',''],['tgt_0415','b','REPLIED'],['tgt_0416',''],
+  ['tgt_0417','g','BOOKED'],['tgt_0418',''],['tgt_0419','b','QUALIFYING'],['tgt_0420',''],['tgt_0421',''],['tgt_0422','g','BOOKED'],['tgt_0423','']
+];
+document.getElementById('targets').innerHTML = TARGETS.map(([id, c, tag]) =>
+  `<div class="${id === 'tgt_0417' ? 'on' : ''}"><span class="dot ${c}"></span>${id}${tag ? `<span class="tag">${tag}</span>` : ''}</div>`).join('');
+
+// [span, note, start %, width %, duration, focus]
+const SPANS = [
+  ['source.match', 'Matched thesis: 2 sites, owner-operated, no sponsor', 0, 6, '41s'],
+  ['enrich.owner', 'Founder identified; direct mobile verified', 6, 6, '2m 10s'],
+  ['outreach.sms', 'First touch referencing the second location', 12, 4, '1s'],
+  ['reply.inbound', '“Depends who\'s asking.”', 40, 3, '29m'],
+  ['agent.respond', 'Answered in 58s; offered two times', 43, 3, '58s'],
+  ['qualify.check', 'Revenue band, timeline, openness: pass', 46, 18, '1d 2h'],
+  ['calendar.book', 'Tue 10:00 · partner calendar · notes attached', 64, 36, '6d 4h', true],
+];
+const tbody = document.getElementById('spans');
+tbody.innerHTML = SPANS.map(([n, note, l, w, d, f]) =>
+  `<tr class="row"><td class="span-name">${n}<span class="note">${note}</span></td>
+   <td><div class="bar"><i class="${f ? 'focus' : ''}" style="left:${l}%" data-w="${w}"></i></div></td>
+   <td class="dur">${d}</td></tr>`).join('');
+let played = false;
+function playStream() {
+  if (played) return; played = true;
+  [...tbody.rows].forEach((r, i) => setTimeout(() => {
+    r.classList.add('in'); const b = r.querySelector('i'); b.style.width = b.dataset.w + '%';
+  }, reduce ? 0 : i * 380));
+}
+
+/* ---------- reveal on scroll ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in');
+  if (e.target.classList.contains('stream')) playStream();
+  io.unobserve(e.target);
+}), {threshold: .15});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
