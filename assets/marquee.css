@@ -1,0 +1,11 @@
+/* rolling "clients from" logo strip, shared by every engine page */
+.trust{padding:48px 0 8px}
+.trust .cap{font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#999;letter-spacing:.08em;text-transform:uppercase;text-align:center;margin-bottom:20px;padding:0 24px}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee .track{display:flex;gap:16px;width:max-content;animation:roll 38s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.marquee .tile{flex:none;height:72px;padding:0 22px;display:flex;align-items:center;gap:10px;background:#f4f4f2;color:#111;font:500 15px Inter,system-ui,sans-serif;white-space:nowrap}
+.marquee .tile img{height:40px;width:auto;filter:grayscale(1) contrast(1.1)}
+.marquee.names .tile{background:transparent;color:#ededed;box-shadow:0 0 0 1px rgba(255,255,255,.145);height:52px;font-size:14px}
+@keyframes roll{to{transform:translateX(calc(-50% - 8px))}}
+@media(prefers-reduced-motion:reduce){.marquee .track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}.marquee .dup{display:none}}
