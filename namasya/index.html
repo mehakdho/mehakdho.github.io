@@ -527,7 +527,7 @@ function render(i,instant){
     instant?el.classList.add('on'):timers.push(setTimeout(()=>{el.classList.add('on');log.scrollTop=log.scrollHeight},l[0]))});
   const tr=$('tr');tr.innerHTML='';
   let lines=null;for(let j=base(i);j<=i;j++)if(S[j].tr)lines=S[j].tr;
-  if(!lines)tr.innerHTML='<p class="on" style="opacity:.55">The call starts within a minute of the enquiry.</p>';
+  if(!lines)tr.innerHTML='<p class="on" style="opacity:.55">'+(base(i)?'Your own caller makes this call. No AI on Part 2.':'The call starts within a minute of the enquiry.')+'</p>';
   else lines.forEach((l,k)=>{tr.insertAdjacentHTML('beforeend',`<p><span class="who">${l[0]}</span><span class="g">${l[1]}</span><span class="en">${l[2]}</span></p>`);const el=tr.lastChild;
     (instant||!s.tr)?el.classList.add('on'):timers.push(setTimeout(()=>{el.classList.add('on');tr.parentElement.scrollTop=9e9},k*(s.dur/lines.length)))});
   setRec(i);setScore(s.score);$('why').textContent=s.why;
