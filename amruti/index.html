@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Amruti Studios · How we'd do it for you</title>
+<meta property="og:title" content="Amruti Studios · How we'd do it for you">
+<meta property="og:description" content="3D booth design, product films and 3D visuals. Yamaha, Haier, Honda, boAt.">
+<style>
+:root{--bg:#F6F5F2;--card:#fff;--ink:#17171A;--muted:#6B6B73;--rule:#E2E1DC;--accent:#C2410C}
+@media (prefers-color-scheme:dark){:root{--bg:#131315;--card:#1C1C1F;--ink:#EDEDEA;--muted:#A1A1AA;--rule:#2E2E33;--accent:#FB923C}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;padding:0 16px}
+.w{max-width:680px;margin:0 auto;padding:36px 0 48px}
+.lbl{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(28px,6vw,40px);line-height:1.1;margin:10px 0 12px;text-wrap:balance}
+h2{font-size:20px;margin:0 0 10px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:20px;margin-top:18px}
+.logos{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.logos span{border:1px solid var(--rule);border-radius:999px;padding:5px 12px;font-weight:600;font-size:15px}
+ol{margin:0;padding-left:20px}ol li{margin-bottom:8px}
+ul{margin:0;padding-left:20px}ul li{margin-bottom:6px}
+.next{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.next .lbl{color:inherit;opacity:.7}
+a{color:var(--accent)}
+.small{font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="w">
+  <span class="lbl">Amruti Studios · prepared for <span id="co">you</span></span>
+  <h1 id="h">How we'd do it for you</h1>
+  <p id="intro"></p>
+
+  <div class="card">
+    <h2>Who you'd work with</h2>
+    <p><b>Amit Tomar</b>, founder of Amruti Studios. Before starting the studio he ran brand and launch work in-house:</p>
+    <ul>
+      <li>Haier: the 2012 worldwide rebrand rolled out across India, then launches of new product lines.</li>
+      <li>Groupe SEB: 28% category sales growth, 2020–22.</li>
+      <li>Award: Best Innovative Designed Stall, Haier, Indian Ice-Cream Expo 2024.</li>
+    </ul>
+    <p style="margin-top:10px">Brands the studio has delivered for:</p>
+    <div class="logos"><span>Yamaha</span><span>Haier</span><span>Honda Power</span><span>boAt</span></div>
+  </div>
+
+  <div class="card">
+    <h2>What we'd do for <span class="co2">you</span></h2>
+    <ol id="steps"></ol>
+  </div>
+
+  <div class="card">
+    <h2>Timing</h2>
+    <p>A 3D model takes 15–28 days. A detailed product film takes 21–45 days. Tell us your date and we plan back from it.</p>
+    <p class="small">See our work: <a href="https://amrutistudios.com">amrutistudios.com</a></p>
+  </div>
+
+  <div class="card next">
+    <span class="lbl">Next step</span>
+    <h2 style="margin-top:8px">A 30-minute video call with Amit</h2>
+    <p>He walks you through the plan for <span class="co2">your company</span> and answers anything. Just reply to Mehak's text with the time that suits you.</p>
+  </div>
+</div>
+<script>
+const q=new URLSearchParams(location.search);
+let co=(q.get('c')||'').replace(/[<>]/g,'').slice(0,60);
+if(co&&co===co.toUpperCase())co=co.toLowerCase().replace(/\b\w/g,x=>x.toUpperCase()); // DSBS names arrive in capitals
+const G={
+ booth:{h:"Your trade show booth, designed in 3D before it's built",
+  i:"You've already paid for the space. We design the booth in 3D so you see exactly what visitors will see, and make a short product film to play on the stand.",
+  s:["Design the booth in 3D, so you approve every wall, screen and light before anything is built.","Make a short 3D product film to loop on your screens, the thing that stops people walking past.","Hand everything to your fabricator, or we coordinate it for you."]},
+ agency:{h:"3D product films and visuals for your clients",
+  i:"When a client needs a product film or 3D visuals, we make them for you, under your name, so you can say yes to the brief.",
+  s:["You send the brief and the product details.","We build the product in 3D and make the film or the stills, with your team approving each stage.","You deliver it to your client. We stay behind the scenes."]},
+ design:{h:"Your product designs, turned into 3D renders and a launch film",
+  i:"You've designed the product. We turn it into renders and a short film that sell it to your client's buyers before the first one is made.",
+  s:["We take your CAD or drawings and build an exact 3D model.","Photo-real renders for the website, the pitch and the packaging.","A short launch film that shows the product working."]},
+ machine:{h:"A 3D film that shows how your machine works",
+  i:"Your machines are hard to bring to every meeting and every show. A 3D film shows the whole machine working, inside and out, on any screen.",
+  s:["We build your machine in 3D from your drawings or photos.","A short film showing how it works, step by step, including the parts you can't see from outside.","Cut versions for your sales team, your website and your trade show screen."]}
+};
+const g=G[q.get('g')]||G.design;
+const name=co||'you';
+document.getElementById('co').textContent=co||'you';
+document.querySelectorAll('.co2').forEach(e=>e.textContent=co||'you');
+document.getElementById('h').textContent=g.h;
+document.getElementById('intro').textContent=g.i;
+document.getElementById('steps').innerHTML=g.s.map(x=>'<li>'+x+'</li>').join('');
+</script>
+</body>
+</html>
