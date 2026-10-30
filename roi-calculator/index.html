@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ROI Calculator · Blue Sun</title>
+<meta name="description" content="See what your website visitors are worth: visitors, buyers, revenue and profit per month.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/engine.css">
+<link rel="stylesheet" href="/assets/theme.css">
+<style>
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+@media(max-width:800px){.calc{grid-template-columns:1fr}}
+.calc .card{position:relative;padding:28px;min-width:0}
+.f{display:grid;gap:6px;margin-bottom:20px}
+.f label{color:#fff;font-weight:500}
+.f small{color:var(--mute,#9aa0ad);font-size:13px}
+.f input{font:500 16px "Geist Mono",ui-monospace,monospace;background:rgba(255,255,255,.04);color:#fff;border:1px solid rgba(255,255,255,.14);padding:12px 14px;width:100%;box-sizing:border-box}
+.f input:focus{outline:2px solid #fff;outline-offset:1px}
+.out{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.10)}
+.out:last-of-type{border-bottom:0}
+.out span{color:#cfd3dc}
+.out b{font:500 18px "Geist Mono",ui-monospace,monospace;color:#fff;text-align:right}
+.out.big b{font-size:28px}
+.summary{margin-top:20px;color:#cfd3dc;font-size:17px;line-height:1.6}
+.summary b{color:#fff}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>Blue Sun</a>
+  <nav class="links"><a href="/">All engines</a><a href="/case-studies/">Case studies</a></nav>
+  <a class="btn" href="https://cal.id/mehak-dhoundiyal/let-s-build-your-first-campaign-demo">Book a call <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9 9 3M4 3h5v5"/></svg></a>
+</header>
+<div class="plain-hero"><div class="glow"></div><div class="wrap">
+  <span class="chip"><span class="dot g"></span>ROI Calculator</span>
+  <h1>What are your visitors worth?</h1>
+  <p>Put in your own numbers. See how many buyers your traffic turns into and the profit that makes each month.</p>
+
+  <div class="calc">
+    <div class="card">
+      <div class="f"><label for="visitors">People who visit your site or enquire per month</label><input id="visitors" type="number" min="0" value="500"></div>
+      <div class="f"><label for="perBuyer">Out of how many people does 1 buy?</label><small>e.g. 50 means 1 buyer for every 50 visitors</small><input id="perBuyer" type="number" min="1" value="50"></div>
+      <div class="f"><label for="price">Average sale value ($)</label><small>What one customer pays you</small><input id="price" type="number" min="0" value="5000"></div>
+      <div class="f" style="margin-bottom:0"><label for="margin">Your profit on each sale (%)</label><input id="margin" type="number" min="0" max="100" value="30"></div>
+    </div>
+    <div class="card">
+      <div class="out"><span>Buyers per month</span><b id="oBuyers"></b></div>
+      <div class="out"><span>Revenue per month</span><b id="oRev"></b></div>
+      <div class="out big"><span>Profit per month</span><b id="oProfit"></b></div>
+      <div class="out"><span>Profit per year</span><b id="oYear"></b></div>
+      <div class="out"><span>Profit from each visitor</span><b id="oPer"></b></div>
+      <p class="summary" id="summary"></p>
+    </div>
+  </div>
+
+  <div class="hero-row" style="margin-top:32px"><a class="btn lg" href="https://cal.id/mehak-dhoundiyal/let-s-build-your-first-campaign-demo">Book 30 minutes to see how to grow these numbers <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9 9 3M4 3h5v5"/></svg></a></div>
+  <p class="mono" style="font-size:13px;color:var(--mute);margin-top:16px">Example figures shown. Buyers are counted in whole people, rounded down.</p>
+</div></div>
+<script>
+const $=id=>document.getElementById(id), n=id=>Math.max(0,parseFloat($(id).value)||0);
+const usd=v=>"$"+Math.round(v).toLocaleString("en-US");
+function calc(){
+  const visitors=n("visitors"), buyers=Math.floor(visitors/Math.max(1,n("perBuyer")));
+  const rev=buyers*n("price"), profit=rev*n("margin")/100;
+  $("oBuyers").textContent=buyers; $("oRev").textContent=usd(rev);
+  $("oProfit").textContent=usd(profit); $("oYear").textContent=usd(profit*12);
+  $("oPer").textContent=visitors?"$"+(profit/visitors).toFixed(2):"–";
+  $("summary").innerHTML=buyers
+    ?`${visitors.toLocaleString("en-US")} visitors → <b>${buyers} buyer${buyers===1?"":"s"}</b> → <b>${usd(profit)}</b> profit a month. Every extra visitor is worth about <b>$${(profit/visitors).toFixed(2)}</b> to you.`
+    :"Not enough visitors for one buyer yet. Increase visitors or lower the 1-in-X number.";
+}
+document.querySelectorAll("input").forEach(i=>i.addEventListener("input",calc)); calc();
+</script>
+</body>
+</html>
