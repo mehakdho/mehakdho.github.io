@@ -2,7 +2,7 @@
 <title>Shree Namasya Live Demo</title>
 <meta name="robots" content="noindex,nofollow">
 <meta property="og:title" content="Shree Namasya · Live demo">
-<meta property="og:description" content="Tap to watch: one buyer, from ad to site visit in 3 minutes.">
+<meta property="og:description" content="Tap to watch: new buyers from ads, and ready buyers for your callers.">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Playfair+Display:ital,wght@1,500&family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+Gujarati:wght@400;600&display=swap">
 <style>
@@ -186,8 +186,8 @@ footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;paddin
 
 <div id="gate" role="dialog" aria-label="Start the demo">
   <span class="lbl" style="color:#F4F4F5;opacity:.6">Shree Namasya Residency · Blue Sun</span>
-  <h1>See how one buyer<br>books a site visit</h1>
-  <p>Tap the button. The 3-minute demo plays by itself.</p>
+  <h1>Two ways we fill<br>your site visits</h1>
+  <p>1. From an ad, straight to a visit.<br>2. From your old lists, to your callers.<br>Tap the button. It plays by itself.</p>
   <p style="font-family:var(--guj)">બટન દબાવો — ડેમો આપમેળે ચાલશે.</p>
   <button id="start">▶ Tap to watch</button>
 </div>
@@ -201,8 +201,8 @@ footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;paddin
 <section class="hero">
   <div>
     <span class="lbl">Live demo · prepared for Abhijit Bhagwat and the sales team</span>
-    <h1 style="margin-top:18px"><span class="stroke">One buyer.</span><br>Ad to site visit<span class="it">in three minutes, with nobody lifting a phone.</span></h1>
-    <p>Below is the whole journey of one Shree Namasya enquiry, second by second: the ad, the WhatsApp, the Gujarati call, the buyer's details filling in, and the site visit landing on your sales team's list. Press play.</p>
+    <h1 style="margin-top:18px"><span class="stroke">Two buyers.</span><br>Two ways in.<span class="it">New buyers from ads, and ready buyers for your callers from your old lists.</span></h1>
+    <p>Part 1 follows a new enquiry from the ad to a booked site visit. Part 2 follows your old enquiries: the AI calls them all in Gujarati, and each morning your callers get only the ones ready to buy. Press play.</p>
   </div>
   <div class="facts">
     <div><span>Project</span><b>Shree Namasya Residency</b></div>
@@ -267,6 +267,30 @@ footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;paddin
           <div class="bub">⏰ Rakeshbhai, કાલે સવારે 11 વાગ્યે મળીએ છીએ. રસ્તો: <u>maps link</u><span class="t">Sat 18:00</span></div>
           <div class="bub">આજે 11 વાગ્યે. અમારા Nikhilbhai તમને ગેટ પર મળશે.<span class="t">Sun 09:00</span></div>
           <div class="bub me">Nikla, 20 min ma pohchu chhu<span class="t">Sun 10:38</span></div>
+        </div></div>
+        <div class="scr" data-s="6" style="background:#fff">
+          <b style="font-size:14px">Sunfin · calling list</b>
+          <span style="color:#666">Old enquiries + past buyers near Vadodara</span>
+          <div style="font:600 30px var(--mono);margin:6px 0">1,240</div>
+          <div class="field">✓ Mehul Shah · enquired Feb · <b style="color:#15803d">calling</b></div>
+          <div class="field">✓ Kiran Patel · bought 2018, Gotri</div>
+          <div class="field">✓ Ronak Desai · enquired 99acres, Aug</div>
+          <div class="field">✓ Neha Joshi · Sunfin past client</div>
+          <div class="field" style="opacity:.5">+ 1,236 more · AI calls all of them today</div>
+        </div>
+        <div class="scr" data-s="7"><div class="wa">
+          <div class="wa-h">Blue Sun · Nikhil's hot list ✓</div>
+          <div class="bub">☀️ Good morning Nikhilbhai. 9 ready buyers for you today, best first:<span class="t">09:00</span></div>
+          <div class="bub"><b>1. Mehul Shah · 88</b><br>3 BHK · ₹60L · loan ready<br>"Wants to see before Diwali, with parents"<span class="t">09:00</span></div>
+          <div class="bub"><b>2. Kiran Patel · 81</b><br>Upgrading from 2 BHK · ₹55–65L<span class="t">09:00</span></div>
+          <div class="bub" style="opacity:.6">+ 7 more with notes<span class="t">09:00</span></div>
+        </div></div>
+        <div class="scr" data-s="8"><div class="call" style="background:#14202b">
+          <span style="font-size:11px;opacity:.7">Nikhil calling</span>
+          <div class="avatar" style="background:#22C55E;color:#0b1a10">MS</div>
+          <b>Mehul Shah</b>
+          <span style="font-size:12px;opacity:.8">"Mehulbhai, you spoke to us yesterday about the 3 BHK. Sunday 11 with your parents?"</span>
+          <span style="font-size:13px;color:#4ade80">✅ Visit booked · Sun 11:00</span>
         </div></div>
       </div></div>
 
@@ -467,15 +491,33 @@ const S=[
   why:"Your caller gets a two-line note: who is coming, budget, loan, and that the wife decides with him."},
  {t:"Sunday. <span class='it'>He shows up.</span>",at:186,dur:6000,scr:5,
   log:[[0,"Reminder sent · Sat 18:00"],[2000,"Reminder sent · Sun 09:00"],[4000,"<b>Buyer on the way</b> · Sun 10:38"]],rec:{},score:90,
-  why:"Reminders cut no-shows. If he had not replied, the AI would have called to move the visit, not lose it."}
+  why:"Reminders cut no-shows. If he had not replied, the AI would have called to move the visit, not lose it."},
+ {t:"Part 2 · <span class='it'>your callers' list.</span>",at:0,dur:6000,scr:6,reset:true,
+  log:[[0,"<b>List loaded</b> · 1,240 old enquiries, past buyers, portal leads"],[2500,"Duplicates and wrong numbers removed"],[4200,"AI starts calling · Gujarati · 10 at a time"]],rec:{},score:0,
+  why:"Your callers used to dial this list cold. Now the AI dials it first and finds who is still looking."},
+ {t:"The AI calls <span class='it'>an enquiry from eight months ago.</span>",at:4,dur:14000,scr:3,
+  log:[[0,"<b>Calling</b> Mehul Shah · enquired Feb 2026"],[4000,"Still looking · budget confirmed"],[8000,"Loan ready · wants to visit"],[11000,"<b>Hot</b> · goes to Nikhil's list"]],
+  tr:[["AI","નમસ્તે Mehulbhai, Sunfin Realty થી. ફેબ્રુઆરીમાં તમે 3 BHK વિશે પૂછ્યું હતું. હજુ ઘર શોધો છો?","Hello Mehulbhai, from Sunfin. You asked about a 3 BHK in February. Still looking?"],
+      ["Buyer","હા, હજુ નક્કી નથી કર્યું.","Yes, haven't decided yet."],
+      ["AI","Atladara માં 60 લાખ આસપાસ નવો પ્રોજેક્ટ છે. લોન તૈયાર છે?","There's a new project in Atladara around 60 lakh. Is your loan ready?"],
+      ["Buyer","હા, દિવાળી પહેલાં જોવું છે, માતા-પિતા સાથે.","Yes, want to see it before Diwali, with my parents."]],
+  rec:{name:"Mehul Shah",loc:"Gotri · enquired Feb",want:"3 BHK · before Diwali",budget:"₹55–62 lakh",loan:"Ready",family:"Parents"},score:88,
+  why:"Of every 100 old numbers, the AI finds the few still buying. Nobody on your team spent a minute on the other 90."},
+ {t:"9 am. <span class='it'>Each caller gets a ready list.</span>",at:0,dur:6000,scr:7,
+  log:[[0,"<b>Hot list sent</b> to Nikhil · 9 buyers"],[2500,"Notes from each AI call attached"]],rec:{},score:88,
+  why:"Your callers start the day with people who already said yes on the phone, sorted best first."},
+ {t:"Your caller books it <span class='it'>in one call.</span>",at:0,dur:6000,scr:8,
+  log:[[0,"Nikhil calls Mehul Shah"],[3000,"<b>Visit booked</b> Sun 11:00 · reminders set"]],rec:{visit:"Sun 11:00 · with Nikhil"},score:92,
+  why:"Your team does what it does best: the human call that books the visit. The AI did the hours of dialling before it."}
 ];
 const $=id=>document.getElementById(id);
 const chap=$('chapters');
-S.forEach((s,i)=>{const b=document.createElement('button');b.innerHTML=`<b>0${i+1}</b>${s.t.replace(/<[^>]+>/g,'').split('.')[0]}<span class="fill"></span>`;b.onclick=()=>{go(i);play()};chap.appendChild(b)});
+S.forEach((s,i)=>{const b=document.createElement('button');b.innerHTML=`<b>${String(i+1).padStart(2,'0')}</b>${s.t.replace(/<[^>]+>/g,'').split('.')[0]}<span class="fill"></span>`;b.onclick=()=>{go(i);play()};chap.appendChild(b)});
 let cur=0,timers=[],playing=false,startT=0,raf;
 const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0');
 function clear(){timers.forEach(clearTimeout);timers=[];cancelAnimationFrame(raf)}
-function setRec(upTo){const r={};for(let i=0;i<=upTo;i++)Object.assign(r,S[i].rec);
+const base=i=>{let b=0;for(let j=0;j<=i;j++)if(S[j].reset)b=j;return b};
+function setRec(upTo){const r={};for(let i=base(upTo);i<=upTo;i++)Object.assign(r,S[i].rec);
   document.querySelectorAll('#rec .v').forEach(v=>{const k=v.dataset.k;const nv=r[k]||'waiting';if(v.textContent!==nv){v.textContent=nv;if(r[k]){v.classList.add('new');setTimeout(()=>v.classList.remove('new'),1200)}}})}
 function setScore(v){$('gauge').style.setProperty('--v',v);$('gv').textContent=v}
 function render(i,instant){
@@ -484,11 +526,11 @@ function render(i,instant){
   $('stitle').innerHTML=s.t;$('chap-name').textContent=`Scene ${i+1} of ${S.length}`;
   [...chap.children].forEach((b,j)=>{b.classList.toggle('on',j===i);b.querySelector('.fill').style.width=j<i?'100%':'0'});
   const log=$('log');log.innerHTML='';
-  for(let j=0;j<i;j++)S[j].log.forEach(l=>log.insertAdjacentHTML('beforeend',`<div class="on">${fmt(S[j].at)} · ${l[1]}</div>`));
+  for(let j=base(i);j<i;j++)S[j].log.forEach(l=>log.insertAdjacentHTML('beforeend',`<div class="on">${fmt(S[j].at)} · ${l[1]}</div>`));
   s.log.forEach(l=>{log.insertAdjacentHTML('beforeend',`<div>${fmt(s.at+l[0]/1000*(s.scr===3?10:1))} · ${l[1]}</div>`);const el=log.lastChild;
     instant?el.classList.add('on'):timers.push(setTimeout(()=>{el.classList.add('on');log.scrollTop=log.scrollHeight},l[0]))});
   const tr=$('tr');tr.innerHTML='';
-  const lines=s.tr||(i>3?S[3].tr:null);
+  let lines=null;for(let j=base(i);j<=i;j++)if(S[j].tr)lines=S[j].tr;
   if(!lines)tr.innerHTML='<p class="on" style="opacity:.55">The call starts within a minute of the enquiry.</p>';
   else lines.forEach((l,k)=>{tr.insertAdjacentHTML('beforeend',`<p><span class="who">${l[0]}</span><span class="g">${l[1]}</span><span class="en">${l[2]}</span></p>`);const el=tr.lastChild;
     (instant||!s.tr)?el.classList.add('on'):timers.push(setTimeout(()=>{el.classList.add('on');tr.parentElement.scrollTop=9e9},k*(s.dur/lines.length)))});
