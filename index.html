@@ -68,13 +68,44 @@
   <div class="kicker reveal"><span class="dot b"></span>How every engine runs</div>
   <h2 class="reveal">You approve. It runs. <em>You show up.</em></h2>
   
-  <ol class="timeline">
-  <li class="reveal"><span class="n">1</span><h3>It researches <span class="state">Checked</span></h3><p>Who the decision-maker is, what they need right now, and whether they fit, all checked before the first message.</p></li>
-  <li class="reveal"><span class="n">2</span><h3>You approve <span class="state">Your sign-off</span></h3><p>Nothing goes out without your approval at the start. Once you trust it, it runs on its own. Most clients get there in one to two weeks.</p></li>
-  <li class="reveal"><span class="n">3</span><h3>It reaches out <span class="state">Live</span></h3><p>The right message to the right person, with every reply answered in about 60 seconds, day or night.</p></li>
-  <li class="reveal"><span class="n">4</span><h3>It books <span class="state">On your calendar</span></h3><p>Qualified people land on your calendar with notes. Confirmation and reminders are handled.</p></li>
-  <li class="reveal"><span class="n">5</span><h3>You close <span class="state">Your call</span></h3><p>Your only job is the one that needs you: the conversation.</p></li>
-</ol>
+  <div class="stages">
+  <div class="stages-card" aria-hidden="true">
+    <div class="sc-head"><span class="dot g pulse"></span>Live engine<span class="sc-note">Example lead, illustrative</span></div>
+    <div class="frame" data-i="0">
+      <div class="row" style="--d:0"><span>Decision-maker</span><b>Owner, renovation company</b></div>
+      <div class="row" style="--d:1"><span>Direct mobile</span><b>Verified</b></div>
+      <div class="row" style="--d:2"><span>Need right now</span><b>Hiring 3 project managers</b></div>
+      <div class="row" style="--d:3"><span>Fit</span><b>Yes</b></div>
+      <div class="bar" style="--d:4"><i></i></div><div class="cap" style="--d:5">Checked before the first message</div>
+    </div>
+    <div class="frame" data-i="1">
+      <div class="bubble out" style="--d:0">Saw you are hiring three project managers. Most firms that grow that fast run short of booked jobs first. Worth a quick look at how we fill the calendar?</div>
+      <div class="approve" style="--d:2"><span>Waiting for your sign-off</span><b>Approved ✓</b></div>
+    </div>
+    <div class="frame" data-i="2">
+      <div class="bubble out" style="--d:0">Saw you are hiring three project managers…</div>
+      <div class="bubble in" style="--d:1">Yes, what does it involve?</div>
+      <div class="bubble out" style="--d:3">Happy to show you. Tuesday at 11 or Wednesday at 3?</div>
+      <div class="cap" style="--d:4">Replied in 58 seconds</div>
+    </div>
+    <div class="frame" data-i="3">
+      <div class="cal" style="--d:0"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div>
+      <div class="slot" style="--d:1"><b>Tue 11:00</b> Owner, renovation company<small>Booked · notes attached · reminders on</small></div>
+      <div class="cap" style="--d:3">Confirmation sent</div>
+    </div>
+    <div class="frame" data-i="4">
+      <div class="join" style="--d:0"><small>Today</small><b>11:00 · Owner, renovation company</b><span class="btn">Join the call</span></div>
+      <div class="cap" style="--d:2">Your only job: the conversation</div>
+    </div>
+  </div>
+  <ol class="timeline stages-steps">
+  <li data-i="0"><span class="n">1</span><h3>It researches <span class="state">Checked</span></h3><p>Who the decision-maker is, what they need right now, and whether they fit, all checked before the first message.</p></li>
+  <li data-i="1"><span class="n">2</span><h3>You approve <span class="state">Your sign-off</span></h3><p>Nothing goes out without your approval at the start. Once you trust it, it runs on its own. Most clients get there in one to two weeks.</p></li>
+  <li data-i="2"><span class="n">3</span><h3>It reaches out <span class="state">Live</span></h3><p>The right message to the right person, with every reply answered in about 60 seconds, day or night.</p></li>
+  <li data-i="3"><span class="n">4</span><h3>It books <span class="state">On your calendar</span></h3><p>Qualified people land on your calendar with notes. Confirmation and reminders are handled.</p></li>
+  <li data-i="4"><span class="n">5</span><h3>You close <span class="state">Your call</span></h3><p>Your only job is the one that needs you: the conversation.</p></li>
+  </ol>
+</div>
 </div></section><section style="padding-top:40px"><div class="wrap">
   <div class="kicker reveal"><span class="dot b"></span>Questions</div>
   <h2 class="reveal">Fair questions. <em>Straight answers.</em></h2>
@@ -99,6 +130,7 @@
   </div>
 </footer>
 <script src="/assets/ascii.js"></script>
+<script src="/assets/motion.js"></script>
 <script>
 const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && (e.target.classList.add('in'), io.unobserve(e.target))), {threshold: .12});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
