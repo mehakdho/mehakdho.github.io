@@ -103,3 +103,33 @@ h3{letter-spacing:-.1px}
   .hero-copy>*,.frame.on>*,.frame.on .bar i{animation:none;opacity:1;transform:none;filter:none}
   .frame.on .bar i{width:100%}
 }
+
+/* playbook card pieces */
+.chk{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);font-size:14px;color:#ededed}
+.chk i{font-style:normal;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;flex:none}
+.chk.ok i{background:#fff;color:#0a0e1c}
+.chk.no{color:#777;text-decoration:line-through;text-decoration-color:rgba(255,255,255,.25)}
+.chk.no i{box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);color:#888}
+.frame .path{display:flex;flex-direction:column;align-items:stretch}
+.frame .path>*{opacity:0;transform:translateY(8px)}
+.frame.on .path>*{animation:rowin .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--d)*.3s + .15s)}
+.node{padding:11px 14px;border-radius:12px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);display:flex;flex-direction:column;gap:2px}
+.node b{font-weight:500;font-size:14px;color:#fff}.node small{font-size:12px;color:#888}
+.node:last-child{background:#fff}.node:last-child b{color:#0a0e1c}.node:last-child small{color:#555}
+.link{height:18px;width:1px;margin-left:22px;background:linear-gradient(#fff,rgba(255,255,255,.2));transform-origin:top}
+.frame.on .path .link{animation:grow .35s ease-out both;animation-delay:calc(var(--d)*.3s + .15s)}
+@keyframes grow{from{opacity:1;transform:scaleY(0)}to{opacity:1;transform:none}}
+.bubble.doc{align-self:stretch;max-width:none;background:transparent;color:#ededed;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);border-radius:10px;font:500 12px 'Geist Mono',monospace;line-height:1.5}
+.bubble.doc::before{content:"▤ ";color:#fff}
+@media(max-width:860px){.chk{padding:7px 12px;font-size:13px}.node{padding:8px 12px}.link{height:10px}}
+
+/* written client quotes (no video) */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+@media(max-width:900px){.quotes{grid-template-columns:1fr}}
+.quote{padding:28px;margin:0;display:flex;flex-direction:column;gap:20px}
+.quote blockquote{font-size:20px;line-height:1.4;color:#fff;font-weight:500;margin:0}
+.quote figcaption{margin-top:auto;display:flex;flex-direction:column;gap:2px}
+.quote figcaption b{font-weight:500;color:#fff}.quote figcaption span{font:12px 'Geist Mono',monospace;color:#999}
+.engage{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.engage{grid-template-columns:1fr}}
+.engage .card{min-height:0;padding:24px}.engage .card h3{margin-top:14px}
