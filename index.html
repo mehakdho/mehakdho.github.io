@@ -7,14 +7,17 @@
 <meta name="description" content="Blue Sun builds engines that bring you clients, buyers and deals, built inside your own accounts to run without you.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/engine.css">
 <link rel="stylesheet" href="/assets/marquee.css">
 <link rel="stylesheet" href="/assets/theme.css">
+<link rel="stylesheet" href="/assets/refine.css">
 </head>
 <body style="--accent:#52a8ff">
 <header>
-  <a class="logo" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>Blue Sun</a>
+  <a class="logo brand" href="/" aria-label="Blue Sun Consultancy"><span class="word"><b>blue</b><i>sun</i></span><span class="tag">Consultancy</span></a>
   <nav class="links"><a href="/">All engines</a><a href="/case-studies/">Case studies</a></nav>
   <a class="btn" href="https://cal.id/mehak-dhoundiyal/let-s-build-your-first-campaign-demo">Book a call <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9 9 3M4 3h5v5"/></svg></a>
   <button class="menu-btn" aria-label="Open menu" onclick="document.querySelector('.mobile-menu').classList.add('open')">Menu</button>
@@ -24,20 +27,21 @@
   <a href="/">All engines</a><a href="/pipeline-engine/">Pipeline Engine</a><a href="/deal-flow-engine/">Deal Flow Engine</a><a href="/selling-engine/">Selling Engine</a><a href="/follow-up-engine/">Follow-Up Engine</a><a href="/authority-engine/">Authority Engine</a><a href="/automation-engine/">Automation Engine</a><a href="/case-studies/">Case studies</a>
   <a href="https://cal.id/mehak-dhoundiyal/let-s-build-your-first-campaign-demo">Book a call ↗</a>
 </div>
-<div class="hero" id="top">
+<div class="hero arch" id="top">
   <canvas id="ascii" aria-hidden="true"></canvas><div class="glow"></div><div class="scrim"></div>
   <div class="hero-copy">
     <span class="chip"><span class="dot g pulse"></span>Blue Sun Engines</span>
-    <h1 style="margin-top:20px">Engines that bring you clients, buyers and deals. Built to run without you.</h1>
+    <h1 style="margin-top:20px">Engines that bring you clients, buyers and deals. <em>Built to run without you.</em></h1>
     <p>Each engine is built inside your own accounts and delivers one result to your calendar. When the work is done, the engine stays yours.</p>
-    <div class="hero-row"><a class="btn lg" href="https://cal.id/mehak-dhoundiyal/let-s-build-your-first-campaign-demo">Book a call <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9 9 3M4 3h5v5"/></svg></a><span class="mono" style="font-size:13px;color:var(--mute)">$450M+ in client deal flow written since 2026</span></div>
+    <div class="hero-row"><a class="btn lg" href="https://cal.id/mehak-dhoundiyal/let-s-build-your-first-campaign-demo">Book a call <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9 9 3M4 3h5v5"/></svg></a><a class="btn lg ghost" href="#engines">See the engines</a></div>
+    <span class="mono" style="font-size:13px;color:var(--mute);margin-top:18px">$450M+ in client deal flow written since 2026</span>
   </div>
 </div>
 <div class="trust"><div class="cap">Working with clients from KPMG, Deutsche Bank, Citibank and more</div><div class="marquee"><div class="track"><div class="tile"><img src="/assets/trim-kpmg.png" alt="Kpmg"></div><div class="tile"><img src="/assets/trim-deutsche-bank.png" alt="Deutsche Bank"></div><div class="tile"><img src="/assets/trim-citibank.png" alt="Citibank"></div><div class="tile"><img src="/assets/logo-infinite-consulting.png" alt="Infinite Consulting"></div><div class="tile"><img src="/assets/logo-perigon-capital.jpeg" alt="Perigon Capital">Perigon Capital</div><div class="tile"><img src="/assets/logo-foma-ai.png" alt="FOMA AI">FOMA AI</div><div class="tile"><img src="/assets/logo-lopes-capital.png" alt="Lopes Capital"></div><div class="tile dup" aria-hidden="true"><img src="/assets/trim-kpmg.png" alt="Kpmg"></div><div class="tile dup" aria-hidden="true"><img src="/assets/trim-deutsche-bank.png" alt="Deutsche Bank"></div><div class="tile dup" aria-hidden="true"><img src="/assets/trim-citibank.png" alt="Citibank"></div><div class="tile dup" aria-hidden="true"><img src="/assets/logo-infinite-consulting.png" alt="Infinite Consulting"></div><div class="tile dup" aria-hidden="true"><img src="/assets/logo-perigon-capital.jpeg" alt="Perigon Capital">Perigon Capital</div><div class="tile dup" aria-hidden="true"><img src="/assets/logo-foma-ai.png" alt="FOMA AI">FOMA AI</div><div class="tile dup" aria-hidden="true"><img src="/assets/logo-lopes-capital.png" alt="Lopes Capital"></div></div></div><div class="cap" style="margin-top:36px">Connected to investors behind companies like</div><div class="marquee names"><div class="track"><div class="tile"><img src="/assets/backers/bending-spoons.png" alt="Bending Spoons"></div><div class="tile"><img src="/assets/backers/wellhub.png" alt="Wellhub"></div><div class="tile"><img src="/assets/backers/threecolts.png" alt="Threecolts"></div><div class="tile"><img src="/assets/backers/churchdesk.png" alt="ChurchDesk"></div><div class="tile"><img src="/assets/backers/stoic-lane.png" alt="Stoic Lane"></div><div class="tile"><img src="/assets/backers/advanced-aesthetics-partners.png" alt="Advanced Aesthetics Partners"></div><div class="tile"><img src="/assets/backers/world-host-group.png" alt="World Host Group"></div><div class="tile"><img src="/assets/backers/long-lake.png" alt="Long Lake"></div><div class="tile dup" aria-hidden="true"><img src="/assets/backers/bending-spoons.png" alt="Bending Spoons"></div><div class="tile dup" aria-hidden="true"><img src="/assets/backers/wellhub.png" alt="Wellhub"></div><div class="tile dup" aria-hidden="true"><img src="/assets/backers/threecolts.png" alt="Threecolts"></div><div class="tile dup" aria-hidden="true"><img src="/assets/backers/churchdesk.png" alt="ChurchDesk"></div><div class="tile dup" aria-hidden="true"><img src="/assets/backers/stoic-lane.png" alt="Stoic Lane"></div><div class="tile dup" aria-hidden="true"><img src="/assets/backers/advanced-aesthetics-partners.png" alt="Advanced Aesthetics Partners"></div><div class="tile dup" aria-hidden="true"><img src="/assets/backers/world-host-group.png" alt="World Host Group"></div><div class="tile dup" aria-hidden="true"><img src="/assets/backers/long-lake.png" alt="Long Lake"></div></div></div></div><section style="padding-top:40px"><div class="wrap">
   <div class="kicker reveal"><span class="dot b"></span>The engines</div>
-  <h2 class="reveal">Pick the result you want.</h2>
+  <h2 class="reveal">Pick the <em>result</em> you want.</h2>
   
-  <div class="engines"><a class="card reveal" href="/pipeline-engine/" style="--accent:#52a8ff">
+  <div class="engines" id="engines"><a class="card reveal" href="/pipeline-engine/" style="--accent:#52a8ff">
   <span class="chip"><span class="dot b"></span>01</span><h3>The Pipeline Engine</h3><p>100 qualified conversations in 90 days, from an engine that runs without you and stays yours.</p>
   <div class="proofline">Revenue doubled in 12 weeks · LP Remodeling</div><span class="go">Open the engine →</span></a><a class="card reveal" href="/deal-flow-engine/" style="--accent:#FFC400">
   <span class="chip"><span class="dot b"></span>02</span><h3>The Deal Flow Engine</h3><p>For buyers. Off-market owners who fit your thesis, on your calendar before anyone runs a process.</p>
@@ -52,7 +56,7 @@
   <div class="proofline">Leads answered in 60 seconds, reminders sent with no one pressing send</div><span class="go">Open the engine →</span></a></div>
 </div></section><section style="padding-top:40px"><div class="wrap">
   <div class="kicker reveal"><span class="dot b"></span>By the numbers</div>
-  <h2 class="reveal">Results clients kept.</h2>
+  <h2 class="reveal">Results clients <em>kept.</em></h2>
   
   <div class="metrics reveal">
   <div><div class="v">$450M<small>+</small></div><div class="l">In client deal flow written since 2026</div></div>
@@ -62,13 +66,29 @@
 </div>
 </div></section><section style="padding-top:40px"><div class="wrap">
   <div class="kicker reveal"><span class="dot b"></span>How every engine runs</div>
-  <h2 class="reveal">You approve. It runs. You show up.</h2>
+  <h2 class="reveal">You approve. It runs. <em>You show up.</em></h2>
   
-  <div class="steps"><div class="card reveal"><div class="n">01</div><h3>It researches</h3><p>Who the decision-maker is, what they need right now, and whether they fit, all checked before the first message.</p></div><div class="card reveal"><div class="n">02</div><h3>It reaches out</h3><p>The right message to the right person, with every reply answered in about 60 seconds, day or night.</p></div><div class="card reveal"><div class="n">03</div><h3>It books</h3><p>Qualified people land on your calendar with notes. Confirmation and reminders are handled.</p></div><div class="card reveal"><div class="n">04</div><h3>You close</h3><p>Your only job is the one that needs you: the conversation.</p></div></div><div class="card hitl reveal"><span class="chip"><span class="dot b"></span>You stay in control</span>
-<p>Nothing goes out without your approval at the start. Once you trust it, it runs on its own. Most clients get there in one to two weeks.</p></div>
+  <ol class="timeline">
+  <li class="reveal"><span class="n">1</span><h3>It researches <span class="state">Checked</span></h3><p>Who the decision-maker is, what they need right now, and whether they fit, all checked before the first message.</p></li>
+  <li class="reveal"><span class="n">2</span><h3>You approve <span class="state">Your sign-off</span></h3><p>Nothing goes out without your approval at the start. Once you trust it, it runs on its own. Most clients get there in one to two weeks.</p></li>
+  <li class="reveal"><span class="n">3</span><h3>It reaches out <span class="state">Live</span></h3><p>The right message to the right person, with every reply answered in about 60 seconds, day or night.</p></li>
+  <li class="reveal"><span class="n">4</span><h3>It books <span class="state">On your calendar</span></h3><p>Qualified people land on your calendar with notes. Confirmation and reminders are handled.</p></li>
+  <li class="reveal"><span class="n">5</span><h3>You close <span class="state">Your call</span></h3><p>Your only job is the one that needs you: the conversation.</p></li>
+</ol>
+</div></section><section style="padding-top:40px"><div class="wrap">
+  <div class="kicker reveal"><span class="dot b"></span>Questions</div>
+  <h2 class="reveal">Fair questions. <em>Straight answers.</em></h2>
+  
+  <div class="faq reveal">
+  <details><summary>What if you don't hit 100 qualified appointments in 90 days?</summary><p>We keep working, free, until you have them.</p></details>
+  <details><summary>Will anything go out under my name without me seeing it?</summary><p>No. At the start you approve every message. It only runs on its own once you are happy with it.</p></details>
+  <details><summary>Who owns the engine?</summary><p>You do. It is built inside your own accounts, under your name. If you stop working with us, the engine, the lists and the messages stay yours.</p></details>
+  <details><summary>How fast does it go live?</summary><p>Seven days from kickoff to a live engine, then meetings on your calendar every week after.</p></details>
+  <details><summary>Does it work in my industry?</summary><p>Clients have results in real estate, acquisitions, commercial lending, renovation, consulting and B2B services. On the call we will tell you plainly if it is not a fit.</p></details>
+</div>
 </div></section><section class="cta"><div class="glow"></div><div class="wrap">
   <div class="kicker reveal"><span class="dot g pulse"></span>Book a call</div>
-  <h2 class="reveal">Tell us the result you want.</h2>
+  <h2 class="reveal">Tell us the result <em>you want.</em></h2>
   <p class="reveal">Thirty minutes to see which engine fits your business and what it would deliver for you.</p>
   <div class="reveal"><a class="btn lg" href="https://cal.id/mehak-dhoundiyal/let-s-build-your-first-campaign-demo">Book a call <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9 9 3M4 3h5v5"/></svg></a></div>
 </div></section>
