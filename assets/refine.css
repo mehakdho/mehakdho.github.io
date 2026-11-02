@@ -133,3 +133,20 @@ h3{letter-spacing:-.1px}
 .engage{grid-template-columns:repeat(3,1fr)}
 @media(max-width:900px){.engage{grid-template-columns:1fr}}
 .engage .card{min-height:0;padding:24px}.engage .card h3{margin-top:14px}
+
+/* phones: phases as a plain readable list; the sticky animated card is desktop-only */
+@media(max-width:860px){
+  .stages-card{display:none}
+  .stages-steps li{min-height:0;opacity:1;padding-bottom:28px}
+  .stages-steps li .n{background:#fff;color:#0a0e1c}
+}
+
+/* alternate light sections; cards stay navy so they pop on white */
+section[style*="padding-top:40px"]:nth-of-type(even){background:#f4f6fb;color:#0b1a4a;padding-bottom:96px;margin-top:48px}
+section[style*="padding-top:40px"]:nth-of-type(even) :is(h2,h3,b,strong,summary,li,blockquote,figcaption,.big,.client):not(.card,.card *,.stages-card *){color:#0b1a4a}
+section[style*="padding-top:40px"]:nth-of-type(even) :is(p,.lede,.kicker,small,span,.fine):not(.card,.card *,.stages-card *,.n){color:#4a5a8a}
+section[style*="padding-top:40px"]:nth-of-type(even) a:not(.btn,.card,.card *){color:#1D43D8}
+section[style*="padding-top:40px"]:nth-of-type(even) .timeline li .n{background:#0b1a4a;color:#fff;box-shadow:none}
+section[style*="padding-top:40px"]:nth-of-type(even) .stages-steps li.on .n{background:#1D43D8;color:#fff}
+section[style*="padding-top:40px"]:nth-of-type(even) :is(.timeline,.timeline li,.faq,.faq details){border-color:rgba(11,26,74,.15)}
+section[style*="padding-top:40px"]:nth-of-type(even) .card{color:#fff;background:linear-gradient(160deg,#1a2f7a 0%,#0b1a4a 45%,#06102e 100%)}
