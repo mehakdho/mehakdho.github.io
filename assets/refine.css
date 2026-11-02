@@ -156,3 +156,7 @@ html,body{overflow-x:clip;max-width:100%}
 
 /* grid cards may not grow past the screen; long example lines wrap instead */
 @media(max-width:860px){.bento,.two,.engines,.quotes,.wins,.faces{grid-template-columns:minmax(0,1fr)}.bento>*,.two>*,.engines>*{min-width:0}.rowline>*{min-width:0;overflow-wrap:anywhere}}
+/* dark result strips keep light text even inside white sections */
+section[style*="padding-top:40px"]:nth-of-type(even) :is(.wins,.metrics) :is(.big,.v,.client,b,small,strong){color:#fff}
+section[style*="padding-top:40px"]:nth-of-type(even) :is(.wins,.metrics) :is(p,.l,span){color:#a9b3d1}
+section[style*="padding-top:40px"]:nth-of-type(even) .chip:not(.card *,.wins *,.metrics *){color:#0b1a4a;background:rgba(29,67,216,.08);box-shadow:inset 0 0 0 1px rgba(11,26,74,.18)}
