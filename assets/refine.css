@@ -150,3 +150,6 @@ section[style*="padding-top:40px"]:nth-of-type(even) .timeline li .n{background:
 section[style*="padding-top:40px"]:nth-of-type(even) .stages-steps li.on .n{background:#1D43D8;color:#fff}
 section[style*="padding-top:40px"]:nth-of-type(even) :is(.timeline,.timeline li,.faq,.faq details){border-color:rgba(11,26,74,.15)}
 section[style*="padding-top:40px"]:nth-of-type(even) .card{color:#fff;background:linear-gradient(160deg,#1a2f7a 0%,#0b1a4a 45%,#06102e 100%)}
+
+/* nothing may widen the page: stops the empty strip on the right when zooming out on phones */
+html,body{overflow-x:clip;max-width:100%}
