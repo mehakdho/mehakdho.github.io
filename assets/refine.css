@@ -153,3 +153,6 @@ section[style*="padding-top:40px"]:nth-of-type(even) .card{color:#fff;background
 
 /* nothing may widen the page: stops the empty strip on the right when zooming out on phones */
 html,body{overflow-x:clip;max-width:100%}
+
+/* grid cards may not grow past the screen; long example lines wrap instead */
+@media(max-width:860px){.bento,.two,.engines,.quotes,.wins,.faces{grid-template-columns:minmax(0,1fr)}.bento>*,.two>*,.engines>*{min-width:0}.rowline>*{min-width:0;overflow-wrap:anywhere}}
